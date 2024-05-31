@@ -119,28 +119,31 @@ LOGS =>
 
 function drawChessboard(x) {
   
+  let localString = "";
+  //later used in conditional on Line 41
   function originalBoard(x){
     let localString = [];
     for (let i = 0; i < x; i++){
       
       if (i % 2 == 0){
-        localString += " ";
-      } else {
         localString += "#";
+      } else {
+        localString += " ";
       }
       
     }
     return localString;
   }
 
+  // later used in conditional on Line 45
   function alternateBoard(x){
     let localString = [];
     for (let i = 0; i < x; i++){
       
       if (i % 2 == 0){
-        localString += "#";
-      } else {
         localString += " ";
+      } else {
+        localString += "#";
       }
       
     }
@@ -153,21 +156,31 @@ function drawChessboard(x) {
   
   for (let y = 0; y < x; y++){
     
-    if (y % 2 == 0){
+    if (y === x - 1){
+      if (y % 2 == 0){
+        
+        localString += (originalBoard(x));
+        
+      } else {
+        
+        localString += (alternateBoard(x));
+      } 
       
-      console.log(originalBoard(x)); // these will have to be changed to assignment operators
-      
-    } else {
-      
-      console.log(alternateBoard(x)); // these will have to be changed to assignment operators
-      
-    }  
+    } else if (y % 2 == 0){
+
+      localString += (originalBoard(x) + "\n");
+
+    } else if (y % 2 == 1){
+
+      localString += (alternateBoard(x) + "\n");
+
+    }
     
   }
-  
+  console.log(localString);
 }
 
-console.log(drawChessboard(10));
+
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
