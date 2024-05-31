@@ -26,10 +26,18 @@ LOGS =>
 
 */
 
-function triangles() {
-  
-}
+function triangles(number) {
 
+  let localString = "";
+  
+  for (let i = 1; i <= number; i++){
+    
+    localString += "#";
+    console.log(localString);
+    
+  }
+
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // fizzBuzz ////////////////////////////////////////////////////////////////////
@@ -48,7 +56,31 @@ on the number:
 */
 
 function fizzBuzz(start, end) {
-  
+  for (start; start <= end; start++){
+
+    // double conditional expression must come first or other code block might incorrectly execute
+    if ((start % 5 === 0) && (start % 3 === 0)) {
+
+        console.log("fizzbuzz");
+    
+    // checks to see if number i is a multiple of 5
+    } else if (start % 5 === 0) {
+
+        console.log("buzz");
+    
+    // checks to see if number i is a multiple of 3
+    } else if (start % 3 === 0) {
+
+        console.log("fizz");
+
+    // if none of the aforementioned expressions are true, then simply print i to console
+    } else {
+
+        console.log(start);
+
+    }
+
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
