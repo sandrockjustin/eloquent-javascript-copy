@@ -114,49 +114,59 @@ LOGS =>
 */
 
 function drawChessboard(x) {
-  
-  /* 
-  * This code is verified as completely functional, but something on the backend here
-  * does not accept it as functional. I have tried returning the string, and I have also
-  * tried logging the string. Neither of them will pass the backend's test, however this
-  * is capable of producing completely identical results even to the examples provided
-  * herein. There are even conditionals dedicated to ensuring that the string does not end
-  * with a new-line character.
-  */
 
-  let localString = "";
-  //later used in conditional on Line 41
+  let localString = ""; // stores values from originalBoard and alternateBoard subfunction iterations
+
+  // generates one line of the chessboard, depending on whether the current number is odd/even
+  // this function returns a string value that is concatenated with the localString at the higher scope of drawChessboard
   function originalBoard(x){
-    let localString = [];
+    let originalString = "";
+
+    // iterates as specified by the argument (x)
     for (let i = 1; i <= x; i++){
       
+      // if the current number (i) is even, add "#"
       if (i % 2 == 0){
-        localString += "#";
+        originalString += "#";
+      
+      // if the current number (i) is odd, add " "
       } else {
-        localString += " ";
+        originalString += " ";
       }
       
     }
-    return localString;
+
+    // returns the localString
+    return originalString;
   }
 
-  // later used in conditional on Line 45
+  // generates an alternate line of the chessboard, depending on whether the current number is odd/even
+  // this function returns a string value that is concatenated with the localString at the higher scope of drawChessboard
   function alternateBoard(x){
-    let localString = [];
+    let alternateString = "";
+
+    // iterates as specified by the argument (x)
     for (let i = 1; i <= x; i++){
       
+      // if the current number (i) is even, add "#"
       if (i % 2 == 0){
-        localString += " ";
+        alternateString += " ";
+
+      // if the current number (i) is odd, add " "
       } else {
-        localString += "#";
+        alternateString += "#";
       }
       
     }
-    return localString;
+    return alternateString;
   }
   
+  // drawChessboard main() function calls originalBoard() and alternateBoard()
   for (let y = 0; y < x; y++){
     
+    // if the end has been reached, do not add a newline character
+    
+    /*
     if (y === x - 1){
       if (y % 2 == 0){
         
@@ -166,11 +176,13 @@ function drawChessboard(x) {
         
         localString += (alternateBoard(x));
       } 
-      
-    } else if (y % 2 == 0){
+    */
+    // if the end has NOT been reached and (y) is currently even, add a newline character
+    if (y % 2 == 0){
 
       localString += (originalBoard(x) + "\n");
 
+    // if the end has NOT been reached and (y) is currently odd, add a newline character
     } else if (y % 2 == 1){
 
       localString += (alternateBoard(x) + "\n");
@@ -178,11 +190,10 @@ function drawChessboard(x) {
     }
     
   }
-  return localString;
+  // returns the newly crafted string from drawChessboard(); does not log to console
+  console.log(localString);
 }
-
-
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////// 
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
