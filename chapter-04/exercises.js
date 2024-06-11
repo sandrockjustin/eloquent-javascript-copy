@@ -93,6 +93,17 @@ function reverseArray(array) {
 
 function reverseArrayInPlace() {
 
+  if (array.length === 0){
+    return [];
+  }
+
+  for (let i = 0; i < array.length; i++){
+    array.splice(i, 0, array.pop());
+    console.log(array);
+  }
+
+  return array;
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
