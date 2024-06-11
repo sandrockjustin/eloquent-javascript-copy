@@ -51,7 +51,19 @@ function range(x, y, step = 1) {
 // sum /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function sum() {
+function sum(array) {
+
+  let output = 0;
+
+  if (array.length === 0 || array === undefined){
+    return output;
+  }
+
+  for (let i = 0; i < array.length; i++){
+    output += +(array[i]);
+  }
+
+  return output;
 
 }
 
@@ -59,7 +71,19 @@ function sum() {
 // reverseArray ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArray() {
+function reverseArray(array) {
+
+  let output = [];
+
+  if (array.length === 0){
+    return [];
+  }
+
+  for (let i = array.length - 1; i >= 0; i--){
+    output.push(array[i]);
+  }
+
+  return output;
 
 }
 
