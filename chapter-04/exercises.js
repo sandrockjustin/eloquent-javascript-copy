@@ -110,7 +110,17 @@ function reverseArrayInPlace(array) {
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {
+function arrayToList(array) {
+
+  let rest = null;
+
+  // base case
+  if (array.length === 0){
+    return rest;
+  }
+
+  // recursive statement
+  return {value: array[0], rest: arrayToList(array.slice(1))}
 
 }
 
