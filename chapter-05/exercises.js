@@ -2,9 +2,21 @@
 // flatten /////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function flatten(...arrays) {
+function flatten(arrays) {
 
-  let localArray = [...arrays];
+  let localArray = [];
+
+  // for every array in arrays argument
+  for (let i = 0; i < arrays.length; i++){
+
+    // for every item in nested array
+    for (let x = 0; x < arrays[i].length; x++){
+
+      localArray.push(arrays[i][x]);
+
+    }
+
+  }
 
   return localArray;
 
@@ -14,7 +26,28 @@ function flatten(...arrays) {
 // loop ////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function loop() {
+function loop(array, testFunction, updateFunction, bodyFunction) {
+
+  // for every item of the array
+  for (let i = 0; i < array.length; i++){
+
+    // if the testFunction, when invoked on current value, returns false
+    if (testFunction(array[i]) === false){
+      
+      // pass the current value to the bodyFunction
+      bodyFunction(array[i]);
+
+      // then pass the current value to the updateFunction
+      updateFunction(array[i]);
+
+      // then reset our loop to start at the beginning
+      i = 0;
+
+    }
+
+  }
+
+  return array;
 
 }
 
