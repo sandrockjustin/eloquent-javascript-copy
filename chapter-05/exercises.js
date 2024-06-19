@@ -26,7 +26,7 @@ function flatten(arrays) {
 // loop ////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function loop(array, testFunction, updateFunction, bodyFunction) {
+function loop(array, testFunction, bodyFunction, updateFunction) {
 
   // for every item of the array
   for (let i = 0; i < array.length; i++){
@@ -38,7 +38,8 @@ function loop(array, testFunction, updateFunction, bodyFunction) {
       bodyFunction(array[i]);
 
       // then pass the current value to the updateFunction
-      updateFunction(array[i]);
+      // current element (array[i]) is set to the return value of updateFunction(array[i])
+      array[i] = updateFunction(array[i]);
 
       // then reset our loop to start at the beginning
       i = 0;
@@ -55,7 +56,19 @@ function loop(array, testFunction, updateFunction, bodyFunction) {
 // every ///////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function every() {
+function every(array, func) {
+
+  for (let i = 0; i < array.length; i++){
+
+    if (func(array[i]) === false){
+
+      return false;
+
+    }
+
+  }
+
+  return true;
 
 }
 
@@ -63,7 +76,46 @@ function every() {
 // dominantDirection ///////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function dominantDirection() {
+function dominantDirection(string) {
+
+  // must use scripts.js in this project, find it in explorer
+
+  //IMPORT
+  function characterScript(code) {
+    for (let script of SCRIPTS) {
+      if (script.ranges.some(([from, to]) => {
+        return code >= from && code < to;
+      })) {
+        return script.direction;
+      }
+    }
+    return null;
+  }
+  //IMPORT
+
+  let ltr = 0;
+  let rtl = 0;
+
+  // for every character in our string
+  for (let i = 0; i < string.length; i++){
+
+    if (characterScript(string.charCodeAt(i)) === "ltr"){
+
+      ltr += 1;
+
+    } else if (characterScript(string.charCodeAt(i)) === "rtl"){
+
+      rtl += 1;
+
+    }
+
+  }
+
+  if (ltr > rtl){
+    return "ltr";
+  } else {
+    return "rtl";
+  }
 
 }
 
