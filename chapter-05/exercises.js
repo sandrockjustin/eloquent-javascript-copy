@@ -26,29 +26,14 @@ function flatten(arrays) {
 // loop ////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function loop(array, testFunction, bodyFunction, updateFunction) {
+function loop(n, test, update, body) {
 
-  // for every item of the array
-  for (let i = 0; i < array.length; i++){
+  // for every item
+  for (let i = n; test(i); i = update(i)){
 
-    // if the testFunction, when invoked on current value, returns false
-    if (testFunction(array[i]) === false){
-      
-      // pass the current value to the bodyFunction
-      bodyFunction(array[i]);
-
-      // then pass the current value to the updateFunction
-      // current element (array[i]) is set to the return value of updateFunction(array[i])
-      array[i] = updateFunction(array[i]);
-
-      // then reset our loop to start at the beginning
-      i = 0;
-
-    }
+    body(i);
 
   }
-
-  return array;
 
 }
 
